@@ -4,7 +4,7 @@ import { DeviceMotion } from 'expo-sensors';
 
 export default function App() {
  
-  const [{ beta}, sD] = useState({
+  const [{beta}, sD] = useState({
     beta: 0
   });
 
