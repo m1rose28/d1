@@ -1,9 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert} from 'react-native';
 import { DeviceMotion } from 'expo-sensors';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
+function App() {
  
+  function RideScreen() {
+    return (
+          <View>
+            <Text style={styles.text}>{y}</Text>
+          </View>
+    );
+  }
+
+  function HomeScreen() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Home Screen</Text>
+          <Button title="Start Ride" 
+          onPress={() => Alert.alert("Simple Button pressed")} />
+          </View>
+    );
+  }
+
+  const Stack = createNativeStackNavigator();
+
   const [{beta}, sD] = useState({
     beta: 0
   });
@@ -34,10 +56,13 @@ export default function App() {
     return () => _unsubscribe();
   }, []);
 
-  return (
-    <View>
-      <Text style={styles.text}>{y}</Text>
-    </View>
+  return (  
+    <NavigationContainer> 
+      <Stack.Navigator initialRouteName="RideScreen">
+        <Stack.Screen name="RideScreen" component={RideScreen} />      
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />      
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -56,3 +81,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+export default App;

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.4",
+    "@react-navigation/native-stack": "^6.9.10",
     "expo": "~47.0.12",
     "expo-dev-menu": "^2.0.2",
     "expo-sensors": "~12.0.1",
