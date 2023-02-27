@@ -1,33 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button, Alert} from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, Button, Alert, Image} from 'react-native';
 import { DeviceMotion } from 'expo-sensors';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ride } from "./screens/welcome"
 import { rdx } from "./screens/ride"
+import { gStyles } from './styles/globalStyles';
 
 function App() {
  
   function RideScreen({ navigation }) {
-    let y=rdx;
-    console.log(y);
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={globalStyles.container}>
+       <ImageBackground source={require("./assets/gradient.png")} resizeMode="cover" style={gStyles.image}>
+
         <Text>Home Screen </Text>
           <Button title="Go home" 
           onPress={() => navigation.navigate(HomeScreen)} /> 
-      <Ride/>
+        <Ride/>
+        </ImageBackground>
       </View>
     );
   }
 
   function HomeScreen({ navigation }) {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={gStyles.container}>
+        <ImageBackground source={require("./assets/gradient.png")} resizeMode="cover" style={gStyles.image}>
         <Text>Home Screen</Text>
           <Button title="Start Ride" 
           onPress={() => navigation.navigate(RideScreen)} />
-          </View>
+        </ImageBackground>
+      </View>
     );
   }
 
@@ -43,11 +47,9 @@ function App() {
   );
 }
 
-const styles = StyleSheet.create({
+const globalStyles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 24,
-    backgroundColor: '#eaeaea',
+     flex: 1,
   },
   text: {
     marginTop: 40,
@@ -57,6 +59,10 @@ const styles = StyleSheet.create({
     fontSize: 80,
     fontWeight: 'bold',
   },
+  image: {
+    flex: 1,
+    justifyContent: 'center',
+  }
 });
 
 export default App;
